@@ -1,0 +1,34 @@
+#ifndef MATH_H
+#define MATH_H
+
+#include "value_compare.h"
+
+struct point3 {
+  float px_;
+  float py_;
+  float pz_;
+};
+
+struct vec3 {
+  float x_;
+  float y_;
+  float z_;
+  
+  float dot(const vec3& other) const {
+    return x_ * other.x_ + y_ * other.y_ + z_ * other.z_;
+  }
+  
+  vec3 cross(const vec3& other) const {
+    vec3 result;
+    result.x_ = y_ * other.z_ - other.y_ * z_;
+    result.y_ = z_ * other.x_ - other.z_ * x_;
+    result.z_ = x_ * other.y_ - other.x_ * y_;
+    return result;
+  }
+};
+
+bool vertical(const vec3& v1, const vec3& v2) {
+  return value_equal(0.0f, v1.dot(v2));
+}
+
+#endif // MATH_H
