@@ -14,6 +14,6 @@ color simple_model::get_color_from_ray(ray ray_, director *director_) {
   }
 }
 
-simple_model::simple_model(color env):background_color_(color::black()), env_color_(env) {
+simple_model::simple_model(color env):background_color_(color(0, 0, 255)), env_color_(env) {
 
 }
