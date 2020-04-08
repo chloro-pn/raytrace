@@ -6,7 +6,34 @@
 #include <cstdlib>
 #include <exception>
 #include <vector>
-#include <QDebug>
+#include <fstream>
+
+namespace pn_graphics {
+
+geometry::geometry(std::string filename) {
+  std::ifstream in(filename, std::ios::binary);
+  if (!in.good()) {
+    fprintf(stderr, "file %s open error.", filename.c_str());
+    std::abort();
+  }
+  char information[128] = {0};
+  uint32_t numbers = 0;
+  in.read(information, 80);
+  in.read((char*)&numbers, 4);
+
+  triangle_ tmp;
+  triangle tri;
+  for (size_t i = 0; i < numbers; ++i) {
+    in.read((char*)&tmp, sizeof(tmp));
+    if (in.good() == false) {
+      fprintf(stderr, "file error when reading.");
+      std::abort();
+    }
+    tri = tmp;
+    triangles_.push_back(tri);
+  }
+  in.close();
+}
 
 static std::vector<double> get_coeff_from_points(geometry::triangle& tri) {
   std::vector<double> result;
@@ -101,4 +128,6 @@ geometry geometry::tetrahedron() {
   geo.push(tri);
 
   return geo;
+}
+
 }

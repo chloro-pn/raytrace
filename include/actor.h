@@ -6,6 +6,7 @@
 #include "light.h"
 
 //actor属于场景scene，拥有材质熟悉，几何信息（顶点和法向量），可以被移动，缩放和旋转。
+namespace pn_graphics {
 class actor {
 public:
   std::vector<local_information> penetrated_by_ray(ray ray_light) {
@@ -24,5 +25,5 @@ private:
   geometry geo_;
   material m_;
 };
-
+}
 #endif // ACTOR_H

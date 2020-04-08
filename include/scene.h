@@ -8,6 +8,7 @@
 #include <list>
 #include <memory>
 
+namespace pn_graphics {
 class scene {
 public:
   scene() = default;
@@ -51,5 +52,5 @@ public:
 private:
   std::list<std::weak_ptr<actor>> actors_;
 };
-
+}
 #endif // SCENE_H

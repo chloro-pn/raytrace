@@ -1,6 +1,6 @@
 #ifndef COLOR_H
 #define COLOR_H
-
+namespace pn_graphics {
 class color {
 private:
   int r_;
@@ -73,5 +73,5 @@ public:
     return b_;
   }
 };
-
+}
 #endif // COLOR_H

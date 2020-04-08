@@ -7,6 +7,7 @@
 #include <string>
 #include <map>
 
+namespace pn_graphics {
 class ambient_light {
 public:
   ambient_light(color c):color_(c) {
@@ -121,5 +122,6 @@ struct ray {
 
   }
 };
+}
 
 #endif // LIGHT_H

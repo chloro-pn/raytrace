@@ -1,6 +1,7 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
+namespace pn_graphics {
 struct material {
   double k_a_r_ = 0; // 环境光反射系数0 ~ 1
   double k_a_g_ = 0;
@@ -15,5 +16,5 @@ struct material {
 
   static material material_sample();
 };
-
+}
 #endif // MATERIAL_H

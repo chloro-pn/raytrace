@@ -5,6 +5,7 @@
 #include "../include/actor.h"
 #include "../include/local_information.h"
 
+namespace pn_graphics {
 color simple_model::get_color_from_ray(ray ray_, director *director_) {
   local_information local = (director_->get_scene()).get_loinf_from_ray(ray_);
   if(local.valid() == false) {
@@ -22,4 +23,5 @@ color simple_model::get_color_from_ray(ray ray_, director *director_) {
 
 simple_model::simple_model(color env):background_color_(color::black()), env_color_(env) {
 
+}
 }

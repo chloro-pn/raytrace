@@ -1,6 +1,7 @@
 #ifndef VALUE_COMPARE_H
 #define VALUE_COMPARE_H
 
+namespace pn_graphics {
 template<typename T>
 bool value_equal(const T& t1, const T& t2) {
   return (t1 - t2) >= -10e-4 && (t1 - t2) <= 10e-4;
@@ -24,5 +25,6 @@ bool value_b(const T& t1, const T& t2) {
 template<typename T>
 bool value_s(const T& t1, const T& t2) {
   return (t1 - t2) < -10e-4;
+}
 }
 #endif // VALUE_COMPARE_H

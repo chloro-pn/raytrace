@@ -4,6 +4,7 @@
 #include "material.h"
 #include "mymath.h"
 
+namespace pn_graphics {
 struct local_information {
   material m; // 材质
   vec3 normal = vec3::zero();  // 相交处的表面法向
@@ -16,5 +17,5 @@ struct local_information {
     return valid_ == valid::yes;
   }
 };
-
+}
 #endif // LOCAL_INFORMATION_H

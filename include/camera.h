@@ -5,6 +5,7 @@
 #include <cassert>
 #include <cmath>
 
+namespace pn_graphics {
 class camera {
 private:
   //以下四个成员变量表示初始位置，不变。
@@ -107,5 +108,5 @@ public:
     return tmp_location_;
   }
 };
-
+}
 #endif // CAMERA_H

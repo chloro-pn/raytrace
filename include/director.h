@@ -8,6 +8,7 @@
 #include "lighting_model.h"
 #include <memory>
 
+namespace pn_graphics {
 //导演类是掌管整个渲染空间的类
 class director {
 public:
@@ -56,5 +57,5 @@ private:
   scene scene_;
   std::unique_ptr<lighting_model> lm_;
 };
-
+}
 #endif // DIRECTOR_H

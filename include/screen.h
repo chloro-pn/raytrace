@@ -4,6 +4,7 @@
 #include "color.h"
 #include <cassert>
 
+namespace pn_graphics {
 class screen {
 private:
   int width_;
@@ -44,5 +45,5 @@ public:
 
   }
 };
-
+}
 #endif // SCREEN_H

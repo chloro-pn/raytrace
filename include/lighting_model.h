@@ -1,6 +1,7 @@
 #ifndef LIGHTING_MODEL_H
 #define LIGHTING_MODEL_H
 
+namespace pn_graphics {
 class color;
 class director;
 class ray;
@@ -13,5 +14,5 @@ public:
 
   }
 };
-
+}
 #endif // LIGHTING_MODEL_H

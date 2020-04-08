@@ -4,6 +4,7 @@
 #include "value_compare.h"
 #include <cmath>
 
+namespace pn_graphics {
 struct vec3;
 
 struct point3 {
@@ -111,5 +112,5 @@ double get_second_norm(const vec3& v);
 double get_angle(const vec3& v1, const vec3& v2);
 
 double get_cos_angle(const vec3& v1, const vec3& v2);
-
+}
 #endif // MATH_H
