@@ -7,15 +7,15 @@
 struct vec3;
 
 struct point3 {
-  float px_;
-  float py_;
-  float pz_;
+  double px_;
+  double py_;
+  double pz_;
 
   static point3 zero() {
     return point3(0, 0, 0);
   }
 
-  point3(float x, float y, float z):px_(x), py_(y), pz_(z) {
+  point3(double x, double y, double z):px_(x), py_(y), pz_(z) {
 
   }
 
@@ -25,23 +25,23 @@ struct point3 {
     return value_equal(px_, v.px()) && value_equal(py_, v.py()) && value_equal(pz_, v.pz());
   }
 
-  float px() const {
+  double px() const {
     return px_;
   }
 
-  float py() const {
+  double py() const {
     return py_;
   }
 
-  float pz() const {
+  double pz() const {
     return pz_;
   }
 };
 
 struct vec3 {
-  float x_;
-  float y_;
-  float z_;
+  double x_;
+  double y_;
+  double z_;
 
   static vec3 zero() {
     return vec3(0, 0, 0);
@@ -49,11 +49,17 @@ struct vec3 {
 
   vec3() = default;
 
-  vec3(float x, float y, float z):x_(x), y_(y), z_(z) {
+  vec3(const point3& p1, const point3& p2) {
+    x_ = p2.px() - p1.px();
+    y_ = p2.py() - p1.py();
+    z_ = p2.pz() - p1.pz();
+  }
+
+  vec3(double x, double y, double z):x_(x), y_(y), z_(z) {
 
   }
 
-  float dot(const vec3& other) const {
+  double dot(const vec3& other) const {
     return x_ * other.x_ + y_ * other.y_ + z_ * other.z_;
   }
 
@@ -67,6 +73,10 @@ struct vec3 {
 
   bool operator==(const vec3& other) const {
     return value_equal(x_, other.x_) && value_equal(y_, other.y_) && value_equal(z_, other.z_);
+  }
+
+  bool operator!=(const vec3& other) const {
+    return !(*this == other);
   }
 
   vec3 operator+(const vec3& other) const {
@@ -91,5 +101,9 @@ point3 point3::operator+(const vec3& v) const {
 bool vertical(const vec3& v1, const vec3& v2);
 
 vec3 normalize(const vec3& v);
+
+double get_second_norm(const vec3& v);
+
+double get_angle(const vec3& v1, const vec3& v2);
 
 #endif // MATH_H

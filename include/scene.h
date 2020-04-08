@@ -4,6 +4,7 @@
 #include "actor.h"
 #include "color.h"
 #include "light.h"
+#include "local_information.h"
 #include <list>
 #include <memory>
 
@@ -16,13 +17,13 @@ public:
     actors_.push_back(actor);
   }
 
-  actor::local_information get_loinf_from_ray(const ray& ray_) {
-    std::vector<actor::local_information> locals;
+  local_information get_loinf_from_ray(const ray& ray_) {
+    std::vector<local_information> locals;
     for(auto it = actors_.begin(); it!= actors_.end();) {
       std::shared_ptr<actor> act = it->lock();
       if(act) {
         auto results = act->penetrated_by_ray(ray_);
-        for(auto& each : results) {
+        for(auto& each: results) {
           locals.push_back(each);
         }
         ++it;
@@ -31,7 +32,7 @@ public:
         it = actors_.erase(it);
       }
     }
-    std::sort(locals.begin(), locals.end(), [](const actor::local_information& li1, const actor::local_information& li2)-> bool {
+    std::sort(locals.begin(), locals.end(), [](const local_information& li1, const local_information& li2)-> bool {
       return li1.t < li2.t;
     });
     for(auto& each : locals) {
@@ -42,8 +43,8 @@ public:
     }
 
     //没有合法的相交或者locals根本为空
-    actor::local_information li;
-    li.valid_ = actor::local_information::valid::no;
+    local_information li;
+    li.valid_ = local_information::valid::no;
     return li;
   }
 

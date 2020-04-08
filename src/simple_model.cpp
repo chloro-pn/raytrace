@@ -3,9 +3,10 @@
 #include "../include/light.h"
 #include "../include/color.h"
 #include "../include/actor.h"
+#include "../include/local_information.h"
 
 color simple_model::get_color_from_ray(ray ray_, director *director_) {
-  actor::local_information local = (director_->get_scene()).get_loinf_from_ray(ray_);
+  local_information local = (director_->get_scene()).get_loinf_from_ray(ray_);
   if(local.valid() == false) {
     return background_color_;
   }
@@ -14,6 +15,6 @@ color simple_model::get_color_from_ray(ray ray_, director *director_) {
   }
 }
 
-simple_model::simple_model(color env):background_color_(color(0, 0, 255)), env_color_(env) {
+simple_model::simple_model(color env):background_color_(color::black()), env_color_(env) {
 
 }

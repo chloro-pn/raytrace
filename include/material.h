@@ -12,6 +12,8 @@ struct material {
   double k_s_g_ = 0;
   double k_s_b_ = 0;
   double n_ = 1; // 镜面高光指数
+
+  static material material_sample();
 };
 
 #endif // MATERIAL_H

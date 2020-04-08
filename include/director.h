@@ -11,7 +11,7 @@
 //导演类是掌管整个渲染空间的类
 class director {
 public:
-  director(screen* scr, std::unique_ptr<lighting_model> lm):camera_(800, 600), scr_(scr),lm_(std::move(lm)) {
+  director(screen* scr, std::unique_ptr<lighting_model> lm):camera_(400, 300), scr_(scr),lm_(std::move(lm)) {
 
   }
 
