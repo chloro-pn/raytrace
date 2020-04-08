@@ -23,6 +23,7 @@ public:
         //光线追踪计算每个像素点的颜色。
         double r1 = scr_->get_w_ratio(i);
         double r2 = scr_->get_h_ratio(j);
+        camera_.render_before();
         point3 origin = camera_.get_view_point_from_ratio(r1, r2);
         vec3 direction = camera_.lookat();
         //将代表视线的射线交给光照模型，获取颜色。

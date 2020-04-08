@@ -90,6 +90,10 @@ struct vec3 {
   vec3 operator*(double n) const {
     return vec3(x_ * n, y_ * n, z_ * n);
   }
+
+  vec3 operator-() const {
+    return vec3(-x_, -y_, -z_);
+  }
 };
 
 inline
@@ -105,5 +109,7 @@ vec3 normalize(const vec3& v);
 double get_second_norm(const vec3& v);
 
 double get_angle(const vec3& v1, const vec3& v2);
+
+double get_cos_angle(const vec3& v1, const vec3& v2);
 
 #endif // MATH_H
