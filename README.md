@@ -9,7 +9,7 @@
 
 用以上光照模型渲染的第一张图片！
 
-<img src="https://github.com/chloro-pn/raytrace/master/pic/1.png" width="450" height="300">
+<img src="https://github.com/chloro-pn/raytrace/master/pic/1" width="450" height="300">
 
 背景颜色黑色，环境光白色，环境光反射系数：  r = 0.5, g_ = 0.45, b_ = 0.33。像素颜色等于环境光颜色 * 环境光反射系数 * cos(a) a为法向量与光线
 方向夹角。
