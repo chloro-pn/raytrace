@@ -77,7 +77,7 @@ public:
 
   geometry& operator=(const geometry&) = default;
 
-  std::vector<local_information> get_loinf_from_ray(ray ray_);
+  std::vector<local_information> get_loinf_from_ray(const ray& ray_);
 
   void push(const triangle& tri) {
     triangles_.push_back(tri);

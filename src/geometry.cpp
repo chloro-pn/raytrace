@@ -35,7 +35,7 @@ geometry::geometry(std::string filename) {
   in.close();
 }
 
-static std::vector<double> get_coeff_from_points(geometry::triangle& tri) {
+static std::vector<double> get_coeff_from_points(const geometry::triangle& tri) {
   std::vector<double> result;
   result.push_back(tri.normal.x_);
   result.push_back(tri.normal.y_);
@@ -45,7 +45,7 @@ static std::vector<double> get_coeff_from_points(geometry::triangle& tri) {
   return result;
 }
 
-static double get_t_from_ray_and_triangle(ray& ray_, geometry::triangle& tri_) {
+static double get_t_from_ray_and_triangle(const ray& ray_, const geometry::triangle& tri_) {
   auto coeffs = get_coeff_from_points(tri_);
   assert(coeffs.size() == 4);
   double A = coeffs[0];
@@ -69,7 +69,7 @@ static double get_t_from_ray_and_triangle(ray& ray_, geometry::triangle& tri_) {
  * 将三角形的法向量和交点构造local_information并放入result中
  * 循环结束，返回。
  */
-std::vector<local_information> geometry::get_loinf_from_ray(ray ray_) {
+std::vector<local_information> geometry::get_loinf_from_ray(const ray& ray_) {
   std::vector<local_information> result;
   for(auto& each : triangles_) {
     double t = get_t_from_ray_and_triangle(ray_, each);

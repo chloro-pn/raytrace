@@ -12,11 +12,12 @@ namespace pn_graphics {
 //导演类是掌管整个渲染空间的类
 class director {
 public:
-  director(screen* scr, std::unique_ptr<lighting_model> lm):camera_(400, 300), scr_(scr),lm_(std::move(lm)) {
+  director(screen* scr, std::unique_ptr<lighting_model> lm):camera_(), scr_(scr),lm_(std::move(lm)) {
 
   }
 
   void render() {
+    camera_.render_before();
     int w = scr_->width();
     int h = scr_->height();
     for(int i = 0; i < w; ++i) {
@@ -24,7 +25,6 @@ public:
         //光线追踪计算每个像素点的颜色。
         double r1 = scr_->get_w_ratio(i);
         double r2 = scr_->get_h_ratio(j);
-        camera_.render_before();
         point3 origin = camera_.get_view_point_from_ratio(r1, r2);
         vec3 direction = camera_.lookat();
         //将代表视线的射线交给光照模型，获取颜色。

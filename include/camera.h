@@ -25,7 +25,7 @@ private:
   double rotate_by_y_ = 0; //左看，右看
 
 public:
-  camera(double w, double h):width_(w), height_(h) {
+  camera(double w = 800, double h = 600):width_(w), height_(h) {
 
   }
 
