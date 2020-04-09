@@ -12,7 +12,10 @@ namespace pn_graphics {
 //导演类是掌管整个渲染空间的类
 class director {
 public:
-  director(screen* scr, std::unique_ptr<lighting_model> lm):camera_(), scr_(scr),lm_(std::move(lm)) {
+  director(screen* scr, std::unique_ptr<lighting_model> lm):camera_(),
+                                                            scr_(scr),
+                                                            scene_(color::black()),
+                                                            lm_(std::move(lm)) {
 
   }
 

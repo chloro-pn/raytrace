@@ -25,6 +25,14 @@ public:
     return r_ == other.r_ && g_ == other.g_ && b_ == other.b_;
   }
 
+  color operator+(const color& other) const {
+    color result(color::white());
+    result.set_red( r_ + other.r_);
+    result.set_green( g_ + other.g_);
+    result.set_blue( b_ + other.b_);
+    return result;
+  }
+
   void set_red(int r) {
     if(r > 255) {
       r_ = 255;

@@ -52,20 +52,16 @@ private:
 
 class point_light{
 public:
-  point_light(color c, vec3 dir, point3 p):color_(c), direction_(dir), origin_(p),init_(true) {
+  point_light(color c, point3 p):color_(c), origin_(p),init_(true) {
 
   }
 
-  point_light():color_(color::white()), direction_(vec3::zero()), origin_(point3::zero()), init_(false) {
+  point_light():color_(color::white()), origin_(point3::zero()), init_(false) {
 
   }
 
   color get_color() const {
     return color_;
-  }
-
-  vec3 get_direction() const {
-    return direction_;
   }
 
   point3 get_origin() const {
@@ -78,7 +74,6 @@ public:
 
 private:
   color color_;
-  vec3 direction_;
   point3 origin_;
   bool init_;
 };

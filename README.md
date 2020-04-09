@@ -26,3 +26,12 @@
 <img src="https://github.com/chloro-pn/raytrace/blob/master/pic/3.png" width="450" height="300">
 
 从stl文件读取的空心的立方块。
+
+2020-04-09:
+
+今天实现了lambert光照模型，目前仅反射一次，并且由于场景中没有其他物体，漫反射仅考虑光源。
+提供一个平行光源，方向为（-1，-1，-1）。
+
+<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/4.png" width="450" height="300">
+
+可以看到图中部分表面由于被自身其他部分遮挡，产生阴影效果：）

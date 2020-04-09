@@ -9,11 +9,12 @@ namespace pn_graphics {
 color simple_model::get_color_from_ray(ray ray_, director *director_) {
   local_information local = (director_->get_scene()).get_loinf_from_ray(ray_);
   if(local.valid() == false) {
-    return background_color_;
+    return director_->get_scene().background_color();
   }
   else {
-    double cos_angle = get_cos_angle(ray_.direction, local.normal);
-    cos_angle = cos_angle >= 0 ? cos_angle : -cos_angle;
+    double cos_angle = get_cos_angle(-ray_.direction, local.normal);
+    cos_angle = cos_angle >= 0 ? cos_angle : 0;
+    const color& env_color_ = director_->get_light().get_ambient_light().get_color();
     int r = env_color_.r() * local.m.k_a_r_ * cos_angle;
     int g = env_color_.g() * local.m.k_a_g_ * cos_angle;
     int b = env_color_.b() * local.m.k_a_b_ * cos_angle;
@@ -21,7 +22,7 @@ color simple_model::get_color_from_ray(ray ray_, director *director_) {
   }
 }
 
-simple_model::simple_model(color env):background_color_(color::black()), env_color_(env) {
+simple_model::simple_model() {
 
 }
 }

@@ -11,11 +11,17 @@
 namespace pn_graphics {
 class scene {
 public:
-  scene() = default;
+  scene(color background_c):background_color_(background_c) {
+
+  }
 
   void push(std::shared_ptr<actor> act) {
     std::weak_ptr<actor> actor = act;
     actors_.push_back(actor);
+  }
+
+  const color& background_color() const {
+    return background_color_;
   }
 
   local_information get_loinf_from_ray(const ray& ray_) {
@@ -51,6 +57,7 @@ public:
 
 private:
   std::list<std::weak_ptr<actor>> actors_;
+  color background_color_;
 };
 }
 #endif // SCENE_H
