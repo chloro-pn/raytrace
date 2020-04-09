@@ -40,4 +40,9 @@
 同时调整平行光源的方向使其偏离特殊情况，更具真实感。不过可以看到边界处锯齿状很明显，且由于相交算法不稳定导致的黑点。
 当当当当！
 
-<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/4.png" width="600" height="450">
+<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/5.png" width="600" height="450">
+
+饭前抽空实现了基于超级采样的抗锯齿机制，每个像素采点由1个变为5个，分别为中心点和上下左右四个边界点，下面是抗锯齿之后的效果。
+可以看到边界处明显的锯齿现象减弱了不少：）
+
+<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/6.png" width="600" height="450">

@@ -26,12 +26,12 @@ public:
     return height_;
   }
 
-  double get_w_ratio(int w) const {
-    return double(w) / width_;
+  double get_w_ratio(double w) const {
+    return w / width_;
   }
 
-  double get_h_ratio(int h) const {
-    return double(h) / height_;
+  double get_h_ratio(double h) const {
+    return h / height_;
   }
 
   void resize(int w, int h) {

@@ -84,8 +84,8 @@ public:
 
   //0 <= r1 <= 1, 0 <= r2 <= 1.
   point3 get_view_point_from_ratio(double r1, double r2) {
-    assert(value_be(r1, 0.0) && value_se(r1, 1.0));
-    assert(value_be(r2, 0.0) && value_se(r2, 1.0));
+    //assert(value_be(r1, 0.0) && value_se(r1, 1.0));
+    //assert(value_be(r2, 0.0) && value_se(r2, 1.0));
     r1 = r1 - 0.5;
     r2 = r2 - 0.5;
     point3 point_location = location() + (right() * r1 * width_ + up() * r2 * height_);
