@@ -7,7 +7,7 @@
 namespace pn_graphics {
 class simple_model : public lighting_model {
 public:
-  color get_color_from_ray(ray, director*) override;
+  color get_color_from_ray(const ray&, director*) override;
 
   simple_model();
 };

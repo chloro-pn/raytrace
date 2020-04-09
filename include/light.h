@@ -80,7 +80,7 @@ private:
 
 class light {
 public:
-  light(const ambient_light& al = ambient_light(color(255, 255, 255))):al_(al) {
+  light(const ambient_light& al = ambient_light(color(125, 125, 125))):al_(al) {
 
   }
 

@@ -6,10 +6,10 @@
 #include "../include/local_information.h"
 
 namespace pn_graphics {
-color simple_model::get_color_from_ray(ray ray_, director *director_) {
+color simple_model::get_color_from_ray(const ray& ray_, director *director_) {
   local_information local = (director_->get_scene()).get_loinf_from_ray(ray_);
   if(local.valid() == false) {
-    return director_->get_scene().background_color();
+    return director_->get_light().get_ambient_light().get_color();
   }
   else {
     double cos_angle = get_cos_angle(-ray_.direction, local.normal);

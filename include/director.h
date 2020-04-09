@@ -14,7 +14,7 @@ class director {
 public:
   director(screen* scr, std::unique_ptr<lighting_model> lm):camera_(),
                                                             scr_(scr),
-                                                            scene_(color::black()),
+                                                            scene_(),
                                                             lm_(std::move(lm)) {
 
   }
