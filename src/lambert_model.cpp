@@ -49,7 +49,27 @@ color lambert_model::inner(const ray& ray_, director* director_, int current) {
     c2.set_red(r);
     c2.set_blue(b);
     c2.set_green(g);
-    return c1 + c2;
+
+    //点光源输入，默认为没有输入
+    color c3(color::black());
+    const point_light& light2 = director_->get_light().get_point_lights("light2");
+    assert(light2.if_init() == true);
+    new_ray = ray(xp, normalize(vec3(xp, light2.get_origin())));
+    new_local = (director_->get_scene()).get_loinf_from_ray(new_ray);
+    if(new_local.valid() == false) {
+      c3 = light2.get_color();
+    }
+    cos_angle = get_cos_angle(new_ray.direction, local.normal);
+    cos_angle = cos_angle >= 0 ? cos_angle : 0;
+
+    r = c3.r() * local.m.k_d_r_ * cos_angle;
+    b = c3.b() * local.m.k_d_b_ * cos_angle;
+    g = c3.g() * local.m.k_d_g_ * cos_angle;
+    //漫反射模型计算平行光的输出。
+    c3.set_red(r);
+    c3.set_blue(b);
+    c3.set_green(g);
+    return c1 + c2 + c3;
   }
 }
 

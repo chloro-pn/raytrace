@@ -46,3 +46,7 @@
 可以看到边界处明显的锯齿现象减弱了不少：）
 
 <img src="https://github.com/chloro-pn/raytrace/blob/master/pic/6.png" width="600" height="450">
+
+饭后又抽空添加了一个点光源。。。需要把之前的平行光修改的非常暗才能看到点光源的效果：）
+
+<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/7.png" width="600" height="450">

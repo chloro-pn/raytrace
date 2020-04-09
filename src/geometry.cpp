@@ -7,6 +7,7 @@
 #include <exception>
 #include <vector>
 #include <fstream>
+#include <QDebug>
 
 namespace pn_graphics {
 
