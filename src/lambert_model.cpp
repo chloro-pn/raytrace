@@ -31,6 +31,7 @@ color lambert_model::inner(const ray& ray_, director* director_, int current) {
 
     double t = local.t;
     point3 xp = point3(ray_.origin.px() + ray_.direction.x_ * t, ray_.origin.py() + ray_.direction.y_ * t, ray_.origin.pz() + ray_.direction.z_ * t);
+
     const parallel_light& light = director_->get_light().get_parallel_lights("light1");
     assert(light.if_init() == true);
     ray new_ray(xp, -light.get_direction());
