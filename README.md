@@ -50,3 +50,14 @@
 饭后又抽空添加了一个点光源。。。需要把之前的平行光修改的非常暗才能看到点光源的效果：）
 
 <img src="https://github.com/chloro-pn/raytrace/blob/master/pic/7.png" width="600" height="450">
+
+2020-04-10:
+
+添加了纹理的基本框架但没有具体的纹理映射算法，用简单的坐标系计算一个纹理颜色进行渲染，为了显示光照和纹理的综合效果，首先
+展示无纹理的光照模型：
+
+<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/8.png" width="600" height="450">
+
+简单渲染之后的模型：
+
+<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/9.png" width="600" height="450">

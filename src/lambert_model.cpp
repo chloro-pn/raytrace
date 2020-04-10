@@ -70,7 +70,8 @@ color lambert_model::inner(const ray& ray_, director* director_, int current) {
     c3.set_red(r);
     c3.set_blue(b);
     c3.set_green(g);
-    return c1 + c2 + c3;
+
+    return c1 + c2 + c3 + local.texture_color;
   }
 }
 
