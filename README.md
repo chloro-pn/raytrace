@@ -58,6 +58,6 @@
 
 <img src="https://github.com/chloro-pn/raytrace/blob/master/pic/8.png" width="600" height="450">
 
-简单渲染之后的模型：
+加上纹理之后的综合模型：
 
 <img src="https://github.com/chloro-pn/raytrace/blob/master/pic/9.png" width="600" height="450">
