@@ -27,7 +27,8 @@ public:
 
   //只是举个例子，由acotr类来实现纹理和geometry顶点坐标的映射。
   color get_texture_from_point(const point3& point) {
-    return color(point.px() * 2, point.py() * 2, point.pz() / 2);
+    //return color(point.px() * 2, point.py() * 2, point.pz() / 2);
+    return color::black();
   }
 
 private:

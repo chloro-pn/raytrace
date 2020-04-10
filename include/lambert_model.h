@@ -9,7 +9,7 @@ class lambert_model : public lighting_model {
 public:
   color get_color_from_ray(const ray&, director*) override;
 
-  lambert_model(int depth = 0);
+  lambert_model(int depth = 3);
 
 private:
   int max_depth_;

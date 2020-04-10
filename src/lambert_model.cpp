@@ -13,14 +13,14 @@ color lambert_model::get_color_from_ray(const ray& ray_, director *director_) {
 
 color lambert_model::inner(const ray& ray_, director* director_, int current) {
   local_information local = (director_->get_scene()).get_loinf_from_ray(ray_);
-  //获取环境光
-  const color& env_color_ = director_->get_light().get_ambient_light().get_color();
 
   if(local.valid() == false) {
-    //射线ray_与场景没有交点,直接返回环境光。
-    return env_color_;
+    //射线ray_与场景没有交点,直接返回黑色背景。
+    return color::black();
   }
   else {
+    //获取环境光
+    const color& env_color_ = director_->get_light().get_ambient_light().get_color();
     int r = env_color_.r() * local.m.k_a_r_;
     int g = env_color_.g() * local.m.k_a_g_;
     int b = env_color_.b() * local.m.k_a_b_;
@@ -71,7 +71,21 @@ color lambert_model::inner(const ray& ray_, director* director_, int current) {
     c3.set_blue(b);
     c3.set_green(g);
 
-    return c1 + c2 + c3 + local.texture_color;
+    //修正光照模型，不仅从光源处获取光强，也获取物体表面反射的光强，默认最大递归深度3层。
+    //这里仅考虑垂表面法向输入的光强。
+    color c4(color::black());
+    if(current < max_depth_) {
+      //稍微偏移起始点，防止找到自己这个点。
+      vec3 normal = normalize(local.normal);
+      point3 tiny_xp(xp.px() + normal.x_ * 0.1, xp.py() + normal.y_ * 0.1, xp.pz() + normal.z_ * 0.1);
+      new_ray = ray(tiny_xp, normal);
+      c4 = inner(new_ray, director_, ++current);
+      c4.set_red(c4.r() * local.m.k_d_r_);
+      c4.set_green(c4.g() * local.m.k_d_g_);
+      c4.set_blue(c4.b() * local.m.k_d_b_);
+    }
+
+    return c1 + c2 + c3 + c4 + local.texture_color;
   }
 }
 

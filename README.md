@@ -61,3 +61,10 @@
 加上纹理之后的综合模型：
 
 <img src="https://github.com/chloro-pn/raytrace/blob/master/pic/9.png" width="600" height="450">
+
+下午进一步修正了lambert模型，考虑物体表面接受的间接光源（但是目前只考虑法向方向的间接输入），间接光源的追踪最大深度
+目前定义为三层，为了清晰显示结果关闭了纹理。（随着模型的细化本渣渣笔记本越来越顶不住了😢）
+
+<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/10.png" width="600" height="450">
+
+可以看到与之前相比，某些原来是阴影的部分被本身表面的反射光点亮了：）
