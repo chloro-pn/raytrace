@@ -76,3 +76,14 @@
 开启多线程加速，加上本来机器启动了超线程（https://blog.csdn.net/cheng__lu/article/details/98884263） 渲染能跑
 到占用近400%cpu负载（本来机器单cpu 2核），速度快了不少。
 在此基础上准备进行明暗处理消除三角面片的光照误差。
+
+下午完成了phong模型，引入了镜面反射，以下是无镜面反射（lambert模型），镜面反射1（高光指数n = 5），镜面反射2（高光指数n = 20）
+三幅图片，为了显示明显的差别故将漫反射系数，环境光等调的很低。
+
+<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/11.png" width="600" height="450">
+
+<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/12.png" width="600" height="450">
+
+<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/13.png" width="600" height="450">
+
+高光指数大较大的图片明显镜面光更集中，由于镜面反射系数调整的很大，因此两幅图的镜面光强度看不出明显差别。

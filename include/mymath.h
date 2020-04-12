@@ -88,6 +88,14 @@ struct vec3 {
     return result;
   }
 
+  vec3 operator-(const vec3& other) const {
+    vec3 result;
+    result.x_ = x_ - other.x_;
+    result.y_ = y_ - other.y_;
+    result.z_ = z_ - other.z_;
+    return result;
+  }
+
   vec3 operator*(double n) const {
     return vec3(x_ * n, y_ * n, z_ * n);
   }
