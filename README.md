@@ -68,3 +68,11 @@
 <img src="https://github.com/chloro-pn/raytrace/blob/master/pic/10.png" width="600" height="450">
 
 可以看到与之前相比，某些原来是阴影的部分被本身表面的反射光点亮了：）
+
+2020-04-11:
+学习蒙塔卡洛积分，准备进一步修正lambert模型。
+
+2020-04-12:
+开启多线程加速，加上本来机器启动了超线程（https://blog.csdn.net/cheng__lu/article/details/98884263） 渲染能跑
+到占用近400%cpu负载（本来机器单cpu 2核），速度快了不少。
+在此基础上准备进行明暗处理消除三角面片的光照误差。

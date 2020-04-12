@@ -3,7 +3,7 @@
 
 #include "geometry.h"
 #include "local_information.h"
-#include "light.h"
+#include "ray.h"
 
 //actor属于场景scene，拥有材质熟悉，几何信息（顶点和法向量），可以被移动，缩放和旋转。
 namespace pn_graphics {

@@ -6,7 +6,7 @@
 #include <string>
 #include "value_compare.h"
 #include "mymath.h"
-#include "light.h"
+#include "ray.h"
 #include "local_information.h"
 
 namespace pn_graphics {

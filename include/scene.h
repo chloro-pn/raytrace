@@ -3,7 +3,6 @@
 
 #include "actor.h"
 #include "color.h"
-#include "light.h"
 #include "local_information.h"
 #include <list>
 #include <memory>

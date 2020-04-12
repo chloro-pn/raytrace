@@ -3,11 +3,13 @@
 
 #include "color.h"
 #include "mymath.h"
+#include "scene.h"
 #include <vector>
 #include <string>
 #include <map>
 
 namespace pn_graphics {
+
 class ambient_light {
 public:
   ambient_light(color c):color_(c) {
@@ -104,18 +106,40 @@ public:
     return al_;
   }
 
+  struct light_source_information {
+    color color_;
+    vec3 direction_;
+    light_source_information(color c, vec3 v) : color_(c), direction_(v) {
+
+    }
+  };
+
+  std::vector<light_source_information> get_visiable_light_source(const point3& xp, scene& scene_) const {
+    std::vector<light_source_information> results;
+    for(auto& pal : pals_) {
+      ray new_ray(xp, -pal.second.get_direction());
+      local_information local = scene_.get_loinf_from_ray(new_ray);
+      if(local.valid() == false) {
+        light_source_information tmp(pal.second.get_color(), normalize(new_ray.direction));
+        results.push_back(tmp);
+      }
+    }
+
+    for(auto& pol : pols_) {
+      ray new_ray(xp, normalize(vec3(xp, pol.second.get_origin())));
+      local_information local = scene_.get_loinf_from_ray(new_ray);
+      if(local.valid() == false) {
+        light_source_information tmp(pol.second.get_color(), new_ray.direction);
+        results.push_back(tmp);
+      }
+    }
+    return results;
+  }
+
 private:
   ambient_light al_;
   std::map<std::string, parallel_light> pals_;
   std::map<std::string, point_light> pols_;
-};
-
-struct ray {
-  point3 origin;
-  vec3 direction;
-  ray(point3 p, vec3 d):origin(p), direction(d) {
-
-  }
 };
 }
 
