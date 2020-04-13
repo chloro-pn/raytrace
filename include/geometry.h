@@ -8,6 +8,7 @@
 #include "mymath.h"
 #include "ray.h"
 #include "local_information.h"
+#include "texture.h"
 
 namespace pn_graphics {
 //图元的集合，包括顶点坐标，拓扑关系，法向坐标。
@@ -45,8 +46,14 @@ public:
   struct triangle {
     vec3 normal;
     point3 first;
+    double first_x = 0;
+    double first_y = 0;
     point3 second;
+    double second_x = 0;
+    double second_y = 0;
     point3 third;
+    double third_x = 0;
+    double third_y = 0;
 
     triangle():normal(vec3::zero()), first(point3::zero()), second(point3::zero()), third(point3::zero()) {
 
@@ -83,10 +90,13 @@ public:
     triangles_.push_back(tri);
   }
 
+  std::pair<double, double> get_texture_coor_from_tri(const triangle& tri, const point3& point);
+
   static geometry tetrahedron();
 
 private:
   std::vector<triangle> triangles_;
+  texture texture_;
 };
 }
 #endif // GEOMETRY_H

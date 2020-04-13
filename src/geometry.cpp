@@ -7,11 +7,11 @@
 #include <exception>
 #include <vector>
 #include <fstream>
-#include <QDebug>
 
 namespace pn_graphics {
 
 geometry::geometry(std::string filename) {
+  texture_.load("/Users/pn/pnstore/ray/raytrace/resource/texture/3.jpg");
   std::ifstream in(filename, std::ios::binary);
   if (!in.good()) {
     fprintf(stderr, "file %s open error.", filename.c_str());
@@ -31,6 +31,12 @@ geometry::geometry(std::string filename) {
       std::abort();
     }
     tri = tmp;
+    tri.first_x = texture_.width() - 1;
+    tri.first_y = texture_.height() - 1;
+    tri.second_x = 0;
+    tri.second_y = texture_.height() - 1;
+    tri.third_x = 0;
+    tri.third_y = 0;
     triangles_.push_back(tri);
   }
   in.close();
@@ -63,6 +69,20 @@ static double get_t_from_ray_and_triangle(const ray& ray_, const geometry::trian
   return tmp1 / tmp2;
 }
 
+
+std::pair<double, double> geometry::get_texture_coor_from_tri(const triangle& tri, const point3& point) {
+  double area_tri = get_second_norm(vec3(tri.first, tri.second).cross(vec3(tri.first, tri.third))) / 2;
+  double area_p1 = get_second_norm(vec3(point, tri.second).cross(vec3(point, tri.third))) / 2;
+  double area_p2 = get_second_norm(vec3(point, tri.first).cross(vec3(point, tri.third))) / 2;
+  double area_p3 = get_second_norm(vec3(point, tri.first).cross(vec3(point, tri.second))) / 2;
+  double c1 = area_p1 / area_tri;
+  double c2 = area_p2 / area_tri;
+  double c3 = 1 - c1 - c2;
+  double x, y;
+  x = c1 * tri.first_x + c2 * tri.second_x + c3 * tri.third_x;
+  y = c1 * tri.first_y + c2 * tri.second_y + c3 * tri.third_y;
+  return {x, y};
+}
 /*
  * 依次遍历每一个三角形
  * 对射线和三角形进行求交点运算，得到t，如果t <= 0，跳过本三角形
@@ -93,6 +113,9 @@ std::vector<local_information> geometry::get_loinf_from_ray(const ray& ray_) {
     tmp.t = t;
     tmp.normal = each.normal;
     tmp.valid_ = local_information::valid::yes;
+    //需要根据三角形信息求出纹理坐标。
+    auto coor = get_texture_coor_from_tri(each, p);
+    tmp.texture_color = texture_.pixel(coor.first, coor.second);
     result.push_back(tmp);
   }
   return result;

@@ -87,3 +87,13 @@
 <img src="https://github.com/chloro-pn/raytrace/blob/master/pic/13.png" width="600" height="450">
 
 高光指数大较大的图片明显镜面光更集中，由于镜面反射系数调整的很大，因此两幅图的镜面光强度看不出明显差别。
+
+2020-04-13:
+
+通过三角形重心法插值像素，手工导入纹理图片进行渲染：
+
+<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/14.png" width="600" height="450">
+
+<img src="https://github.com/chloro-pn/raytrace/blob/master/pic/15.png" width="600" height="450">
+
+建立顶点坐标和纹理坐标的映射关系目前不是我能够处理的。。只能上手工了。

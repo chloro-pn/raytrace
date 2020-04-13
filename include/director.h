@@ -73,6 +73,7 @@ public:
         this->update();
       });
     }
+    update();
   }
 
   void set_update(const std::function<void()>& func) {
