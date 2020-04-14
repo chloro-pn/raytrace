@@ -90,13 +90,15 @@ public:
     triangles_.push_back(tri);
   }
 
-  std::pair<double, double> get_texture_coor_from_tri(const triangle& tri, const point3& point);
-
   static geometry tetrahedron();
 
 private:
   std::vector<triangle> triangles_;
   texture texture_;
+
+    std::pair<double, double> get_texture_coor_from_tri(const triangle& tri, const point3& point);
+
+    point3 get_corr_from_tri(const triangle& tri, const point3& point);
 };
 }
 #endif // GEOMETRY_H

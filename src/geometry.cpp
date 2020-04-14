@@ -69,8 +69,8 @@ static double get_t_from_ray_and_triangle(const ray& ray_, const geometry::trian
   return tmp1 / tmp2;
 }
 
-
-std::pair<double, double> geometry::get_texture_coor_from_tri(const triangle& tri, const point3& point) {
+static std::vector<double> get_proportion_from_point(const geometry::triangle& tri, const point3& point) {
+  std::vector<double> result;
   double area_tri = get_second_norm(vec3(tri.first, tri.second).cross(vec3(tri.first, tri.third))) / 2;
   double area_p1 = get_second_norm(vec3(point, tri.second).cross(vec3(point, tri.third))) / 2;
   double area_p2 = get_second_norm(vec3(point, tri.first).cross(vec3(point, tri.third))) / 2;
@@ -78,6 +78,30 @@ std::pair<double, double> geometry::get_texture_coor_from_tri(const triangle& tr
   double c1 = area_p1 / area_tri;
   double c2 = area_p2 / area_tri;
   double c3 = 1 - c1 - c2;
+  result.push_back(c1);
+  result.push_back(c2);
+  result.push_back(c3);
+  return result;
+}
+
+point3 geometry::get_corr_from_tri(const triangle& tri, const point3& point) {
+  auto pps = get_proportion_from_point(tri, point);
+  double c1 = pps[0];
+  double c2 = pps[1];
+  double c3 = pps[2];
+
+  double x = c1 * tri.first.px() + c2 * tri.second.px() + c3 * tri.third.px();
+  double y = c1 * tri.first.py() + c2 * tri.second.py() + c3 * tri.third.py();
+  double z = c1 * tri.first.pz() + c2 * tri.second.pz() + c3 * tri.third.pz();
+  return point3(x, y, z);
+}
+
+std::pair<double, double> geometry::get_texture_coor_from_tri(const triangle& tri, const point3& point) {
+  auto pps = get_proportion_from_point(tri, point);
+  double c1 = pps[0];
+  double c2 = pps[1];
+  double c3 = pps[2];
+
   double x, y;
   x = c1 * tri.first_x + c2 * tri.second_x + c3 * tri.third_x;
   y = c1 * tri.first_y + c2 * tri.second_y + c3 * tri.third_y;
